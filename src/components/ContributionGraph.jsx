@@ -17,10 +17,9 @@ const ContributionGraph = () => {
     }, [])
     
    const dataForChart = generateChart(contributions);
-
     return (
         <div style={{display: 'flex'}}>
-            {Object.entries(dataForChart).map((item) => (<Cell item={item}/>))}
+            {Object.entries(dataForChart).map((item) => (<Cell key={item} item={item}/>))}
         </div>
     );
 };

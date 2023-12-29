@@ -1,7 +1,9 @@
 import React from 'react';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import "./Cell.css"
+import { dateFormatter } from '../helpers/functions';
 
 const Cell = ({item}) => {
-    // console.log(item);
     function setColorToCell(contribution) {
         if(contribution === 0) return "#EDEDED"
         else if(contribution <= 9) return "#ACD5F2"
@@ -12,9 +14,19 @@ const Cell = ({item}) => {
     return (
         <div>
             {Object.entries(item[1]).map(item => (
-                <div style={{width: "20px", height: "20px", border: "1px solid white", backgroundColor: setColorToCell(item[1]) }}>
-            {item[1]}
-        </div>
+                <OverlayTrigger key={item} trigger={"click"}  
+          placement={"top"}
+          overlay={
+            <Tooltip id={`tooltip-top`}>
+                <p style={{fontSize: "12px"}}>{item[1] === 0 ? ("No") : (item[1])} contributions</p>
+                <p style={{fontSize: "10px", color: "#7C7C7C"}}>{dateFormatter(item[0])}</p>
+                {console.log(item)}
+            </Tooltip>
+          }>
+                <div className='cell' style={{width: "15px", height: "15px", backgroundColor: setColorToCell(item[1]) }}>
+            </div>
+            
+                </OverlayTrigger>
             ))}
         </div>
         

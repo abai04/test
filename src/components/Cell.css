@@ -1,0 +1,9 @@
+.cell{
+    border: 1px solid white;
+}
+.cell:hover{
+    border: 2px solid gray;
+}
+.cell::selection{
+    border: 1px solid black;
+}
